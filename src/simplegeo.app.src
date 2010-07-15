@@ -1,0 +1,18 @@
+{application, simplegeo,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  lhttpc
+                 ]},
+  {mod, { simplegeo_app, []}},
+  {env, [
+         {api_version, "0.1"},
+         {consumer_key, undefined},
+         {consumer_secret, undefined},
+         {signature_method, hmac_sha1}
+        ]}
+ ]}.
