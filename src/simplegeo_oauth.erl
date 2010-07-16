@@ -47,9 +47,5 @@ request(Consumer, Method, Endpoint, Body) ->
     SignedParams = oauth:signed_params(Method,
                                        Endpoint, [], Consumer,
                                        "", ""),
-    lhttpc:request(oauth:uri(Endpoint, SignedParams),
-                   Method,
-                   [],
-                   Body,
-                   10000,
-                   []).
+    Uri = oauth:uri(Endpoint, SignedParams),
+    lhttpc:request(Uri, Method, [], Body, 10000, []).
