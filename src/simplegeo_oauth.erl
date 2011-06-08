@@ -42,10 +42,15 @@ put(Consumer, Endpoint, Data) ->
 
     request(Consumer, "PUT", Endpoint, Body).
 
+del(Endpoint, Data) ->
+    del(consumer(), Endpoint, Data).
+
+del(Consumer, Endpoint, Data) ->
+    request(Consumer, "DELETE", Endpoint, Data).
 
 request(Consumer, Method, Endpoint, Body) ->
     SignedParams = oauth:signed_params(Method,
-                                       Endpoint, [], Consumer,
+                                        Endpoint, [], Consumer,
                                        "", ""),
     Uri = oauth:uri(Endpoint, SignedParams),
     lhttpc:request(Uri, Method, [], Body, 10000, []).

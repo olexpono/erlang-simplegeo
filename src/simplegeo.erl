@@ -20,6 +20,11 @@ add_record({struct, Props}) ->
     {_, Id} = lists:keyfind(<<"id">>, 1, Props),
     do_put(record, [{layer, Layer}, {id, Id}], {struct, Props}).
 
+del_record({struct, Props}) ->
+    {_, Layer} = lists:keyfind(<<"layer">>, 1, Props),
+    {_, Id} = lists:keyfind(<<"id">>, 1, Props),
+    do_del(record, [{layer, Layer}, {id, Id}]. {struct, Props}).
+
 get_history(Layer, Id) ->
     do_get(history, [{layer, Layer}, {id, Id}]).
 
@@ -64,6 +69,9 @@ do_put(Endpoint, Params, Body) ->
     do_request(simplegeo_oauth, put,
                [simplegeo_endpoints:endpoint(Endpoint, Params), Body]).
 
+do_del(Endpoint, Params, Body) ->
+    do_request(simpleget_oauth, del,
+	       [simplegeo_endpoints:endpoint(Endpoint, Params), Body]).
 
 do_request(Module, Fun, Args) ->
     case erlang:apply(Module, Fun, Args) of
