@@ -2,6 +2,7 @@
 
 -export([get/1, get/2]).
 -export([put/2, put/3]).
+-export([del/2, del/3]).
 
 consumer() ->
     {ok, ConsumerKey} = application:get_env(simplegeo, consumer_key),
